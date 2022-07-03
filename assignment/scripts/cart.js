@@ -37,10 +37,18 @@ function isFull(){
 }//end of isFull function
 
 function removeItem( item ){
-    let basketCheck = basket.indexOf(item);
-    if (basketCheck < basket.length){
-        
+    let cartPosition = basket.indexOf(item);
+    let removed;
+    let originalBasket = basket;
+
+    if(cartPosition > 0 && cartPosition < 4) {
+        removed = basket.splice(cartPosition, 1);
+    } else if (cartPosition === -1) {
+        removed = null;
     }
+
+    return removed;
+
 }//end of removeItem function
 
 console.log(addItem('shoes'));
@@ -57,22 +65,9 @@ console.log(addItem('jumper'));
 console.log(addItem('tanktop'));
 console.log('here is what is in my basket:', basket);
 console.log('is my cart full?', isFull());
-/*### Stretch Goals 
-Remember that Stretch Goals are not required, but will help you to further develop concepts from the skills we have covered.
+console.log(basket);
+console.log('here is removingItem function', removeItem('dress'));
+console.log('here is the updated basket', basket);
+console.log('here is the removingItem function', removeItem('dog'));
+console.log('here is the updated basket', basket);
 
-2. Create a function called isFull(). It should:
-  - return `false` if the basket contains *less* than max number of items
-  - return `true` otherwise (equal or more than maxItems)
-
-3. Update the required `addItem` function to:
-  - Use the `isFull` function to prevent more than `maxItems` from being added to the basket. 
-  - If an item was added to the array, return `true`
-  - If there was no room and the item could not be added return `false`
-
-__Using Array built-in functions!__
-
-4. Create a function called `removeItem`. It should:
-  - Take an input parameter for a string `item`
-  - Use [Array.indexOf](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) to find the index of the first matching item in the basket.
-  - Use [Array.splice](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) to remove the first matching item from the basket.
-  - Return the item removed or `null` if the item was not found*/
